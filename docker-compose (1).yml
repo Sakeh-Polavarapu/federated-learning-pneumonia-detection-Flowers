@@ -1,0 +1,25 @@
+services:
+  server:
+    build: .
+    container_name: server
+    ports:
+      - "8080:8080"
+    command: [ "python", "server.py" ]
+
+  client0:
+    build: .
+    container_name: client0
+    depends_on: [ server ]
+    command: [ "python", "client.py", "0" ]
+
+  client1:
+    build: .
+    container_name: client1
+    depends_on: [ server ]
+    command: [ "python", "client.py", "1" ]
+
+  client2:
+    build: .
+    container_name: client2
+    depends_on: [ server ]
+    command: [ "python", "client.py", "2" ]
